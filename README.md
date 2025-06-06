@@ -1,2 +1,2 @@
-# S.A-Eletr-nica-
+# S.A-Eletronica
 S.A (Eletrônica)
