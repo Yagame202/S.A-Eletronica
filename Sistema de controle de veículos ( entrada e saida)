@@ -1,1 +1,56 @@
+  #include <Servo.h>
+#include <Ultrasonic.h>
+
+const int pinoServo = 3;
+const int pino_trigger = 10;
+const int pino_echo = 9;
+const int ledVerde = 6;
+const int ledVermelho = 5;
+
+Servo s;
+Ultrasonic ultrasonic(pino_trigger, pino_echo);
+
+bool objetoDetectado = false; // Controle de detecção
+
+void setup() {
+  Serial.begin(9600);
+  s.attach(pinoServo);
+  s.write(80); // Inicia o servo em 0 graus
+
+  pinMode(ledVerde, OUTPUT);
+  pinMode(ledVermelho, OUTPUT);
+
+  digitalWrite(ledVerde, LOW);
+  digitalWrite(ledVermelho, HIGH); // Começa com LED vermelho
+}
+
+void loop() {
+  long microsec = ultrasonic.timing();
+  float distancia_cm = ultrasonic.convert(microsec, Ultrasonic::CM);
+
+  Serial.print("Distancia em cm: ");
+  Serial.println(distancia_cm);
+
+  // Detecta objeto próximo e ainda não foi tratado
+  if (distancia_cm <= 10.0 && !objetoDetectado) {
+    objetoDetectado = true;             // Marca que já tratou essa detecção
+
+    s.write(180);                         // Move servo para 90°
+    digitalWrite(ledVerde, HIGH);       // Acende LED verde
+    digitalWrite(ledVermelho, LOW);     // Apaga LED vermelho
+
+    delay(5000);                        // Espera 10 segundos
+
+    s.write(80);                          // Retorna o servo para 0°
+    digitalWrite(ledVerde, LOW);        // Apaga LED verde
+    digitalWrite(ledVermelho, HIGH);    // Acende LED vermelho
+  }
+
+  // Redefine o estado caso nada esteja detectado
+  if (distancia_cm > 10.0) {
+    objetoDetectado = false;
+  }
+
+  delay(200); // Pequeno atraso para suavizar leituras
+}
 
