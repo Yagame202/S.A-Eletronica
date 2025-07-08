@@ -50,5 +50,6 @@ void loop() {
   if (distancia_cm > 10.0) {
     objetoDetectado = false;
   }
+  delay(200);
 }
 
