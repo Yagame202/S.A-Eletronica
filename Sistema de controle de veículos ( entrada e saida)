@@ -15,7 +15,7 @@ bool objetoDetectado = false; // Controle de detecção
 void setup() {
   Serial.begin(9600);
   s.attach(pinoServo);
-  s.write(80); // Inicia o servo em 0 graus
+  s.write(80); 
 
   pinMode(ledVerde, OUTPUT);
   pinMode(ledVermelho, OUTPUT);
@@ -31,19 +31,19 @@ void loop() {
   Serial.print("Distancia em cm: ");
   Serial.println(distancia_cm);
 
-  // Detecta objeto próximo e ainda não foi tratado
+ 
   if (distancia_cm <= 10.0 && !objetoDetectado) {
-    objetoDetectado = true;             // Marca que já tratou essa detecção
+    objetoDetectado = true;             
 
-    s.write(180);                         // Move servo para 90°
-    digitalWrite(ledVerde, HIGH);       // Acende LED verde
-    digitalWrite(ledVermelho, LOW);     // Apaga LED vermelho
+    s.write(180);                        
+    digitalWrite(ledVerde, HIGH);       
+    digitalWrite(ledVermelho, LOW);     
 
-    delay(5000);                        // Espera 10 segundos
+    delay(5000);                      
 
-    s.write(80);                          // Retorna o servo para 0°
-    digitalWrite(ledVerde, LOW);        // Apaga LED verde
-    digitalWrite(ledVermelho, HIGH);    // Acende LED vermelho
+    s.write(80);                          
+    digitalWrite(ledVerde, LOW);        
+    digitalWrite(ledVermelho, HIGH);    
   }
 
   // Redefine o estado caso nada esteja detectado
