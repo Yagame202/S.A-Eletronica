@@ -21,7 +21,7 @@ void setup() {
   pinMode(ledVermelho, OUTPUT);
 
   digitalWrite(ledVerde, LOW);
-  digitalWrite(ledVermelho, HIGH); // Começa com LED vermelho
+  digitalWrite(ledVermelho, HIGH); 
 }
 
 void loop() {
