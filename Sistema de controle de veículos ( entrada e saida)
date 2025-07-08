@@ -46,11 +46,9 @@ void loop() {
     digitalWrite(ledVermelho, HIGH);    
   }
 
-  // Redefine o estado caso nada esteja detectado
+  
   if (distancia_cm > 10.0) {
     objetoDetectado = false;
   }
-
-  delay(200); // Pequeno atraso para suavizar leituras
 }
 
