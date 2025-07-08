@@ -10,7 +10,7 @@ const int ledVermelho = 5;
 Servo s;
 Ultrasonic ultrasonic(pino_trigger, pino_echo);
 
-bool objetoDetectado = false; // Controle de detecção
+bool objetoDetectado = false; 
 
 void setup() {
   Serial.begin(9600);
